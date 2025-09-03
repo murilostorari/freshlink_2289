@@ -598,12 +598,12 @@ const VendorsPage = () => {
     );
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50 flex flex-col">
+        <div className="min-h-screen bg-white flex flex-col font-sans">
             <ResponsiveHeader />
 
-            <main className="pt-16 flex-1">
+            <main className="pt-32 flex-1">
                 {/* Modern Fixed Search and Filter Bar */}
-                <div className={`bg-white border-b border-gray-200/50 sticky z-40 transition-all duration-200 ease-in-out shadow-sm ${isHeaderVisible ? 'top-16' : 'top-0'
+                <div className={`bg-white border-b border-gray-200/50 sticky z-40 transition-all duration-200 ease-in-out shadow-sm ${isHeaderVisible ? 'top-32' : 'top-0'
                     }`}>
                     <div className="container mx-auto px-4 py-4">
                         {/* Categories with modern styling */}

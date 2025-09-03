@@ -22,6 +22,7 @@ const ResponsiveHeader = ({ className = '' }) => {
     const [userAuth, setUserAuth] = useState(null);
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
+    const [searchQuery, setSearchQuery] = useState('');
 
     useEffect(() => {
         const clientAuth = localStorage.getItem('clientAuth');
@@ -76,6 +77,13 @@ const ResponsiveHeader = ({ className = '' }) => {
         }
     };
 
+    const handleSearch = (e) => {
+        e.preventDefault();
+        if (searchQuery.trim()) {
+            navigate(`/products?search=${encodeURIComponent(searchQuery.trim())}`);
+        }
+    };
+
     const getProfileImage = () => {
         if (userAuth?.profileImage) {
             return userAuth.profileImage;
@@ -89,43 +97,54 @@ const ResponsiveHeader = ({ className = '' }) => {
         return userAuth?.name || userAuth?.businessName || 'Usuário';
     };
 
-    const getNavLinkClass = (path) => {
-        const isActive = location.pathname === path;
-        return `flex items-center space-x-2 px-4 py-2.5 rounded-lg text-sm font-body transition-colors duration-200 ${isActive
-            ? 'text-foreground bg-muted shadow-sm font-semibold'
-            : 'text-muted-foreground hover:text-foreground hover:bg-muted/60 font-medium'
-            }`;
-    };
-
     return (
         <header
-            className={`bg-white fixed top-0 left-0 right-0 z-50 transition-transform duration-200 ease-in-out ${isVisible ? 'translate-y-0' : '-translate-y-full'} ${className}`}
+            className={`bg-white fixed top-0 left-0 right-0 z-50 transition-transform duration-200 ease-in-out border-b border-gray-200 ${isVisible ? 'translate-y-0' : '-translate-y-full'} ${className}`}
         >
+            {/* Promotional Banner */}
+            <div className="bg-teal-600 text-white text-center py-2 px-4">
+                <div className="flex items-center justify-center text-sm">
+                    <span className="mr-2">⭐</span>
+                    <span>Introducing Big Display Horizon Pro Smartwatch @ ₹999</span>
+                    <span className="ml-2 text-orange-300 font-semibold">🔥Grab Now! ⚡</span>
+                </div>
+            </div>
+
             {/* Main Header */}
-            <div className="bg-white border-b border-gray-200">
+            <div className="bg-white">
                 <div className="container mx-auto px-4 flex items-center justify-between h-20">
                     {/* Logo */}
-                    <div className="flex-none0">
+                    <div className="flex-none">
                         <Button onClick={handleLogoClick} variant="ghost" className="p-0 h-auto">
-                            <Image src="/path-to-your-logotext.png" alt="PioMart" className="h-10" />
+                            <div className="flex items-center space-x-2">
+                                <div className="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center">
+                                    <span className="text-white font-bold text-lg">P</span>
+                                </div>
+                                <span className="text-2xl font-bold text-gray-900">PioMart</span>
+                            </div>
                         </Button>
                     </div>
 
                     {/* Search Bar */}
                     <div className="flex-1 max-w-2xl hidden md:block px-8">
-                        <div className="relative flex w-full max-w-sm items-center">
+                        <form onSubmit={handleSearch} className="relative flex w-full max-w-sm items-center">
                             <Input
                                 type="text"
                                 placeholder="Search in Product"
-                                className="pl-12 pr-28 py-6 rounded-lg border-gray-300 focus:ring-2 focus:ring-green-500"
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                className="pl-12 pr-28 py-6 rounded-lg border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
                             />
                             <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                 <Icon name="Search" size={20} className="text-gray-400" />
                             </div>
-                            <Button className="absolute right-0 top-0 h-full rounded-l-none bg-[#ff8000] hover:bg-[#ff8000]/90">
+                            <Button 
+                                type="submit"
+                                className="absolute right-0 top-0 h-full rounded-l-none bg-[#ff8000] hover:bg-[#ff8000]/90"
+                            >
                                 Search
                             </Button>
-                        </div>
+                        </form>
                     </div>
 
                     {/* Icons and Login */}
@@ -227,7 +246,11 @@ const ResponsiveHeader = ({ className = '' }) => {
 
                     {/* Navigation links */}
                     <nav className="flex items-center space-x-6">
-                        <Button variant="ghost" className="p-0 h-auto text-sm font-medium text-gray-700 hover:text-gray-900">
+                        <Button 
+                            variant="ghost" 
+                            className="p-0 h-auto text-sm font-medium text-gray-700 hover:text-gray-900"
+                            onClick={() => navigate('/products')}
+                        >
                             Shop
                             <Icon name="ChevronDown" size={14} className="ml-1" />
                         </Button>
@@ -235,7 +258,11 @@ const ResponsiveHeader = ({ className = '' }) => {
                             Supper Deals
                             <Icon name="ChevronDown" size={14} className="ml-1" />
                         </Button>
-                        <Button variant="ghost" className="p-0 h-auto text-sm font-medium text-gray-700 hover:text-gray-900">
+                        <Button 
+                            variant="ghost" 
+                            className="p-0 h-auto text-sm font-medium text-gray-700 hover:text-gray-900"
+                            onClick={() => navigate('/vendors')}
+                        >
                             Find Store
                         </Button>
                         <Button variant="ghost" className="p-0 h-auto text-sm font-medium text-gray-700 hover:text-gray-900">
@@ -252,6 +279,29 @@ const ResponsiveHeader = ({ className = '' }) => {
                         </Button>
                     </nav>
                 </div>
+            </div>
+
+            {/* Mobile Search Bar */}
+            <div className="md:hidden bg-white border-b border-gray-200 px-4 py-3">
+                <form onSubmit={handleSearch} className="relative">
+                    <Input
+                        type="text"
+                        placeholder="Search in Product"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="pl-10 pr-20 py-3 rounded-lg border-gray-300 focus:ring-2 focus:ring-orange-500 focus:border-orange-500"
+                    />
+                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <Icon name="Search" size={18} className="text-gray-400" />
+                    </div>
+                    <Button 
+                        type="submit"
+                        size="sm"
+                        className="absolute right-1 top-1 bottom-1 bg-[#ff8000] hover:bg-[#ff8000]/90 rounded-md"
+                    >
+                        Search
+                    </Button>
+                </form>
             </div>
         </header>
     );

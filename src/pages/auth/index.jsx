@@ -164,7 +164,7 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background pt-16 flex flex-col">
+    <div className="min-h-screen bg-white pt-32 flex flex-col font-sans">
       <ResponsiveHeader />
       
       <main className="container mx-auto px-4 py-8 flex-1">

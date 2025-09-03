@@ -650,7 +650,7 @@ const ProductsPage = () => {
     }, [categories]); // Dependência em categories para re-verificar se a lista de categorias muda
 
     return (
-        <div className="min-h-screen bg-white">
+        <div className="min-h-screen bg-white font-sans">
             <ResponsiveHeader />
 
             <ShareModal
@@ -659,7 +659,7 @@ const ProductsPage = () => {
                 onClose={() => setShareModal(false)}
             />
 
-            <main className="pt-20">
+            <main className="pt-32">
                 {/* Categories Section */}
                 <div className="container mx-auto px-4 pt-12">
                     <h2 className="text-xl font-semibold xl:text-2xl text-gray-900 mb-8">Navegue por Categoria</h2>

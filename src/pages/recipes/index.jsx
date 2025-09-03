@@ -193,10 +193,10 @@ const RecipePage = () => {
     }
 
     return (
-        <div className="min-h-screen bg-background flex flex-col">
+        <div className="min-h-screen bg-white flex flex-col font-sans">
             <ResponsiveHeader />
             
-            <main className="pt-16 flex-1">
+            <main className="pt-32 flex-1">
                 {/* Hero Image */}
                 <div className="relative h-64 md:h-80 overflow-hidden">
                     <Image

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ResponsiveHeader from '../../components/ui/ResponsiveHeader';
-import { Search, ShoppingCart, User, Menu, Heart, Star, Eye, ArrowRight, Package, Truck, Shield, Headphones, Share, X, Copy, MessageCircle, Facebook, Twitter, Instagram } from 'lucide-react';
+import { Heart, Star, Eye, ArrowRight, Package, Truck, Shield, Headphones, Share, X, Copy, MessageCircle, Facebook, Twitter, Instagram } from 'lucide-react';
 import { Button } from '../../components/ui/shadcn/button';
 import { Avatar, AvatarFallback, AvatarImage } from '../../components/ui/shadcn/avatar';
 import Icon from '../../components/AppIcon';
@@ -332,7 +332,7 @@ const ConsumerHomeSearch = () => {
     }
 
     return (
-        <div className="min-h-screen font-sans text-gray-800">
+        <div className="min-h-screen bg-white font-sans text-gray-800">
             <ResponsiveHeader />
 
             {/* Share Modal */}
@@ -345,7 +345,7 @@ const ConsumerHomeSearch = () => {
             {/* Main Content */}
             <main>
                 {/* Hero Section */}
-                <section className="overflow-hidden pb-12 pt-40 bg-gray-100">
+                <section className="overflow-hidden pb-12 pt-32 bg-gray-100">
                     <div className="w-full px-4 mx-auto max-w-7xl sm:px-8 xl:px-0">
                         <div className="grid grid-cols-1 gap-5 xl:grid-cols-3">
                             {/* Main Banner (No Swiper as it's an external library) */}
