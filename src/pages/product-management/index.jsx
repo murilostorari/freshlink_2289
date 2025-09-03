@@ -263,7 +263,7 @@ const ProductManagement = () => {
   const hasActiveFilters = filters?.search || filters?.category || filters?.stock || filters?.visibility;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white font-sans">
       <VendorSidebarNavigation />
       {/* Main Content */}
       <div className="md:ml-64 pt-16 md:pt-0">

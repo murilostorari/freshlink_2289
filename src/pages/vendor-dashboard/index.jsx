@@ -153,7 +153,7 @@ const VendorDashboard = () => {
     }, []);
 
     return (
-        <div className="min-h-screen bg-background">
+        <div className="min-h-screen bg-white font-sans">
             {/* Sidebar Navigation */}
             <VendorSidebarNavigation isCollapsed={sidebarCollapsed} />
             {/* Main Content */}

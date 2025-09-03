@@ -108,6 +108,7 @@ const VendorRegistration = () => {
       </Helmet>
 
       <div className="min-h-screen bg-background flex flex-col">
+      <div className="min-h-screen bg-white flex flex-col font-sans">
         <RegistrationHeader />
         
         <main className="container mx-auto px-4 py-8 flex-1">
@@ -134,3 +135,5 @@ const VendorRegistration = () => {
 };
 
 export default VendorRegistration;
+  )
+}
